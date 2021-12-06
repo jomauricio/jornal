@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-b324_g@tgom@92
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['https://fast-beach-44747.herokuapp.com/','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['fast-beach-44747.herokuapp.com','localhost','127.0.0.1']
 
 
 # Application definition
