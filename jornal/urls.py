@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from noticia.views import home
+from noticia.views import home, listar_autores, detalhar_autor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
+    path('', home, name='home'),
+    path('listar_autores/', listar_autores, name='listar_autores'),
+    path('detalhar_autor/<int:id>/', detalhar_autor, name='detalhar_autor'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -13,3 +13,13 @@ class Autor(models.Model):
     class Meta:
         verbose_name="Autor"
         verbose_name_plural="Autores"
+
+class Noticia(models.Model):
+
+    titulo = models.CharField("Titulo", max_length=200)
+    conteudo = models.TextField("Conteudo")
+    data_pub = models.DateField("Data de publicação")
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.titulo + " - " + self.autor.nome

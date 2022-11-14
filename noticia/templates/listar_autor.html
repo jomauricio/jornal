@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Django</title>
+    <title>Autores - Django</title>
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
 </head>
 <body>
@@ -13,20 +13,11 @@
   <h3>SENAC PI</h3>
   <ul>
     <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'listar_autores' %}">Listar Autores</a></li>
   </ul>
-
-  <h2>Ultimas noticias:</h2>
-  <ul>
-    {% for noticia in noticias %}
-    <li> {{ noticia.titulo }}</li>
-    {% endfor %}
-  </ul>
-<br>
   <h2>Autores:</h2>
   <ul>
     {% for autor in autores %}
-    <li> {{ autor.nome }}</li>
+    <li><a href="{% url 'detalhar_autor' autor.id %}"> {{ autor.nome }}</a></li>
     {% endfor %}
   </ul>
     
