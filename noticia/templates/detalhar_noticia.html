@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Django</title>
+    <title>Noticia - Django</title>
     <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
 </head>
 <body>
@@ -13,25 +13,16 @@
   <h3>SENAC PI</h3>
   <ul>
     <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'listar_autores' %}">Listar Autores</a></li>
     <li><a href="{% url 'listar_noticias' %}">Listar Noticias</a></li>
-    <li><a href="{% url 'criar_autor' %}">Criar Autor</a></li>
-    <li><a href="{% url 'criar_noticia' %}">Criar Noticia</a></li>
+    <li><a href="{% url 'atualizar_noticia' noticia.id %}">Atualizar Noticia</a></li>
+    <li><a href="{% url 'deletar_noticia' noticia.id %}">Deletar Noticia</a></li>
   </ul>
+  <h2>Noticia:</h2>
+  <h3>Titulo: {{ noticia.titulo }}</h3>
+  <h3>Conteudo:  {{ noticia.conteudo }}</h3>
+  <h3>Data de publicação:  {{ noticia.data_pub }}</h3>
+  <h3>Autor:  {{ noticia.autor }}</h3>
 
-  <h2>Ultimas noticias:</h2>
-  <ul>
-    {% for noticia in noticias %}
-    <li> {{ noticia.titulo }}</li>
-    {% endfor %}
-  </ul>
-<br>
-  <h2>Autores:</h2>
-  <ul>
-    {% for autor in autores %}
-    <li> {{ autor.nome }}</li>
-    {% endfor %}
-  </ul>
     
 </body>
 </html>
