@@ -1,0 +1,59 @@
+{% load bootstrap4 %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <title>Noticias SENAC</title>
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+
+  </head>
+
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="">Noticias SENAC</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Cadastro</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/">Administração</a>
+              </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    
+    <main role="main" class="container">
+      
+      <h1 class="mt-5">Noticias SENAC</h1>
+      {% bootstrap_messages %}
+      {% block content %}
+      <p class="lead">O conteudo do site fica aqui.</p>
+      {% endblock %}
+    </main>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% bootstrap_javascript jquery='full' %}
+  </body>
+</html>

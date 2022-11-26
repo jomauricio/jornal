@@ -17,11 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from noticia.views import home, listar_autores, detalhar_autor
+from noticia.views import home, listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('listar_autores/', listar_autores, name='listar_autores'),
     path('detalhar_autor/<int:id>/', detalhar_autor, name='detalhar_autor'),
+    path('criar_autor/', criar_autor, name='criar_autor'),
+    path('atualizar_autor/<int:id>/', atualizar_autor, name='atualizar_autor'),
+    path('deletar_autor/<int:id>/', deletar_autor, name='deletar_autor')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
