@@ -17,9 +17,10 @@ class Autor(models.Model):
 class Noticia(models.Model):
 
     titulo = models.CharField("Titulo", max_length=200)
+    subtitulo = models.CharField("Subtitulo", max_length=200)
     conteudo = models.TextField("Conteudo")
     data_pub = models.DateField("Data de publicação")
-    autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
+    autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='noticias')
 
     def __str__(self):
         return self.titulo + " - " + self.autor.nome

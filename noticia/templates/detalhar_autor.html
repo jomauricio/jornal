@@ -8,4 +8,12 @@
 
   <a class="btn btn-primary" href="{% url 'atualizar_autor' autor.id %}">Atualizar</a>
   <a class="btn btn-danger" href="{% url 'deletar_autor' autor.id %}">Deletar</a>
+
+  <h2 class="mt-5">Noticias do autor:</h2>
+  <ul class="list-group">
+    {% for noticia in autor.noticias.all %}
+      <li class="list-group-item"><a href="{% url 'detalhar_noticia' noticia.id %}"> {{ noticia.titulo }}</a></li>
+    {% endfor %}
+  </ul>
+
 {% endblock content %}

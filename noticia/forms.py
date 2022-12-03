@@ -9,6 +9,6 @@ class AutorForm(ModelForm):
 class NoticiaForm(ModelForm):
     class Meta:
         model = Noticia
-        fields = ['titulo', 'conteudo', 'data_pub', 'autor']
+        fields = ['titulo', 'subtitulo', 'conteudo', 'data_pub', 'autor']
 
 
