@@ -1,27 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autor - Django</title>
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-</head>
-<body>
-  <h1 class="verde">Curso Python/Django</h1>
-  <h3>SENAC PI</h3>
-  <ul>
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'listar_autores' %}">Listar Autores</a></li>
-    <li><a href="{% url 'atualizar_autor' autor.id %}">Atualizar Autor</a></li>
-    <li><a href="{% url 'deletar_autor' autor.id %}">Deletar Autor</a></li>
-  </ul>
+{% extends 'base.html' %}
+
+{% block content %}
   <h2>Autor:</h2>
   <h3>Nome: {{ autor.nome }}</h3>
   <h3>Data de nascimento:  {{ autor.data_nascimento }}</h3>
   <h3>Endereço:  {{ autor.endereco }}</h3>
 
-    
-</body>
-</html>
+  <a class="btn btn-primary" href="{% url 'atualizar_autor' autor.id %}">Atualizar</a>
+  <a class="btn btn-danger" href="{% url 'deletar_autor' autor.id %}">Deletar</a>
+{% endblock content %}

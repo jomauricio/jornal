@@ -1,28 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticia - Django</title>
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-</head>
-<body>
-  <h1 class="verde">Curso Python/Django</h1>
-  <h3>SENAC PI</h3>
-  <ul>
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'listar_noticias' %}">Listar Noticias</a></li>
-    <li><a href="{% url 'atualizar_noticia' noticia.id %}">Atualizar Noticia</a></li>
-    <li><a href="{% url 'deletar_noticia' noticia.id %}">Deletar Noticia</a></li>
-  </ul>
+{% extends 'base.html' %}
+
+{% block content %}
   <h2>Noticia:</h2>
   <h3>Titulo: {{ noticia.titulo }}</h3>
   <h3>Conteudo:  {{ noticia.conteudo }}</h3>
   <h3>Data de publicação:  {{ noticia.data_pub }}</h3>
   <h3>Autor:  {{ noticia.autor }}</h3>
-
-    
-</body>
-</html>
+  <a class="btn btn-primary" href="{% url 'atualizar_noticia' noticia.id %}">Atualizar</a>
+  <a class="btn btn-danger" href="{% url 'deletar_noticia' noticia.id %}">Deletar</a>
+{% endblock content %}

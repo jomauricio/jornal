@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'noticia.apps.NoticiaConfig'
+    'noticia.apps.NoticiaConfig',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

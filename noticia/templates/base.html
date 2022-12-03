@@ -1,5 +1,5 @@
-{% load bootstrap4 %}
-
+{% load bootstrap5 %}
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +8,7 @@
 
 
     <title>Noticias SENAC</title>
-
+    <link href="{% static 'css/stilo.css' %}" rel="stylesheet">
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
 
@@ -19,23 +19,31 @@
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="">Noticias SENAC</a>
+        <div class="container">
+        <a class="navbar-brand" href="">Noticias</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="">Home</a>
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Cadastro</a>
+              <a class="nav-link" href="{% url 'listar_autores' %}">Listar Autores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/">Administração</a>
+              <a class="nav-link" href="{% url 'listar_noticias' %}">Listar Noticias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'criar_autor' %}">Criar Autor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'criar_noticia' %}">Criar Noticia</a>
               </li>
           </ul>
         </div>
+      </div>
       </nav>
     </header>
 
@@ -47,13 +55,13 @@
       {% bootstrap_messages %}
       {% block content %}
       <p class="lead">O conteudo do site fica aqui.</p>
-      {% endblock %}
+      {% endblock content %}
     </main>
 
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    {% bootstrap_javascript jquery='full' %}
+    {% bootstrap_javascript %}
   </body>
 </html>
