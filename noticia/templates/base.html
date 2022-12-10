@@ -43,15 +43,23 @@
               </li>
           </ul>
         </div>
+        <div class="col-md-3 text-end">
+          {% if user.is_authenticated %}
+          <span class="text-white">{{ user.username }}</span>
+          <a href="{% url 'logout' %}" class="btn btn-primary">Sair</a>
+          {% else %}
+          <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+          {% endif %}
+        </div>
       </div>
       </nav>
     </header>
 
     <!-- Begin page content -->
     
-    <main role="main" class="container">
+    <main role="main" class="container pt-5">
       
-      <h1 class="mt-5">Noticias SENAC</h1>
+      <h1>Noticias SENAC</h1>
       {% bootstrap_messages %}
       {% block content %}
       <p class="lead">O conteudo do site fica aqui.</p>

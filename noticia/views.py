@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Noticia, Autor
 from .forms import AutorForm, NoticiaForm
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
@@ -17,6 +17,7 @@ def detalhar_autor(request, id):
     autor = Autor.objects.get(id=id)
     return render(request, "detalhar_autor.html", {"autor": autor})
 
+@login_required
 def criar_autor(request):
     if request.method == 'POST':
         form = AutorForm(request.POST)
@@ -27,6 +28,7 @@ def criar_autor(request):
         form = AutorForm()
     return render(request, 'criar_autor.html', {'form': form})
 
+@login_required
 def atualizar_autor(request, id):
     autor = get_object_or_404(Autor, pk=id)
     form = AutorForm(instance=autor)
@@ -39,7 +41,8 @@ def atualizar_autor(request, id):
             return render(request, 'atualizar_autor.html', {'form': form, 'autor': autor})
     else:
         return render(request, 'atualizar_autor.html', {'form': form, 'autor': autor})
-        
+
+@login_required        
 def deletar_autor(request, id):
     autor = get_object_or_404(Autor, pk=id)
     autor.delete()
@@ -53,6 +56,7 @@ def detalhar_noticia(request, id):
     noticia = Noticia.objects.get(id=id)
     return render(request, "detalhar_noticia.html", {"noticia": noticia})
 
+@login_required
 def criar_noticia(request):
     if request.method == 'POST':
         form = NoticiaForm(request.POST)
@@ -63,6 +67,7 @@ def criar_noticia(request):
         form = NoticiaForm()
     return render(request, 'criar_noticia.html', {'form': form})
 
+@login_required
 def atualizar_noticia(request, id):
     noticia = get_object_or_404(Noticia, pk=id)
     form = NoticiaForm(instance=noticia)
@@ -75,7 +80,8 @@ def atualizar_noticia(request, id):
             return render(request, 'atualizar_noticia.html', {'form': form, 'noticia': noticia})
     else:
         return render(request, 'atualizar_noticia.html', {'form': form, 'noticia': noticia})
-        
+
+@login_required        
 def deletar_noticia(request, id):
     noticia = get_object_or_404(Noticia, pk=id)
     noticia.delete()

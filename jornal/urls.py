@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from noticia.views import home, listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor, listar_noticias, detalhar_noticia, criar_noticia, atualizar_noticia, deletar_noticia
@@ -31,5 +31,6 @@ urlpatterns = [
     path('detalhar_noticia/<int:id>/', detalhar_noticia, name='detalhar_noticia'),
     path('criar_noticia/', criar_noticia, name='criar_noticia'),
     path('atualizar_noticia/<int:id>/', atualizar_noticia, name='atualizar_noticia'),
-    path('deletar_noticia/<int:id>/', deletar_noticia, name='deletar_noticia')
+    path('deletar_noticia/<int:id>/', deletar_noticia, name='deletar_noticia'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
