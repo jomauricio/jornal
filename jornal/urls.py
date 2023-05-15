@@ -18,19 +18,18 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from noticia.views import home, listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor, listar_noticias, detalhar_noticia, criar_noticia, atualizar_noticia, deletar_noticia
+from noticia.views import Home, AutoresListView, AutorDetailView, NoticiaCreateView, RegistrationView, NoticiaViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('news', NoticiaViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
-    path('listar_autores/', listar_autores, name='listar_autores'),
-    path('detalhar_autor/<int:id>/', detalhar_autor, name='detalhar_autor'),
-    path('criar_autor/', criar_autor, name='criar_autor'),
-    path('atualizar_autor/<int:id>/', atualizar_autor, name='atualizar_autor'),
-    path('deletar_autor/<int:id>/', deletar_autor, name='deletar_autor'),
-    path('listar_noticia/', listar_noticias, name='listar_noticias'),
-    path('detalhar_noticia/<int:id>/', detalhar_noticia, name='detalhar_noticia'),
-    path('criar_noticia/', criar_noticia, name='criar_noticia'),
-    path('atualizar_noticia/<int:id>/', atualizar_noticia, name='atualizar_noticia'),
-    path('deletar_noticia/<int:id>/', deletar_noticia, name='deletar_noticia'),
+    path('', Home.as_view(), name='home'),
+    path('', include(router.urls)),
+    path('noticias/', include('noticia.urls')),
+    path('registration/', RegistrationView.as_view(), name='registration'),
     path('accounts/', include('django.contrib.auth.urls')),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

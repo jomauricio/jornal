@@ -1,14 +1,18 @@
 from django.db import models
-
+from django.contrib.auth import get_user_model
 # Create your models here.
 
 class Autor(models.Model):
-    nome = models.CharField("Nome", max_length=200)
-    data_nascimento = models.DateField("Data de nascimento")
-    endereco = models.CharField("Endereço", max_length=200)
+    nome = models.CharField("Nome", max_length=200, blank=True)
+    data_nascimento = models.DateField("Data de nascimento", blank=True, null=True)
+    endereco = models.CharField("Endereço", max_length=200, blank=True)
+    user = models.OneToOneField(get_user_model(), on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.nome + " - " + self.endereco
+        if self.nome:
+            return self.nome + " - " + self.endereco
+        else:
+            return self.user.username
     
     class Meta:
         verbose_name="Autor"

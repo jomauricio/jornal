@@ -11,4 +11,3 @@ class NoticiaForm(ModelForm):
         model = Noticia
         fields = ['titulo', 'subtitulo', 'conteudo', 'data_pub', 'autor']
 
-

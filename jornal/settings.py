@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-sw#+cuma2a6$ih%1e!8_=&dz@-3-d_rspfy0xf=a3q^z$h3jup
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'noticia.apps.NoticiaConfig',
     'bootstrap5',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'jornal',
         'USER': 'postgres',
-        'PASSWORD': 'senac',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '5432',
     }
