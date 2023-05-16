@@ -18,16 +18,19 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from noticia.views import home, listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor, listar_noticias, detalhar_noticia, criar_noticia, atualizar_noticia, deletar_noticia
-from noticia.views import Home, AutoresListView, AutorDetailView, NoticiaCreateView, RegistrationView, NoticiaViewSet
+from noticia.views import Home, AutoresListView, AutorDetailView, NoticiaCreateView, RegistrationView, NoticiaViewSet, AutorViewSet
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register('news', NoticiaViewSet)
+router.register('autores', AutorViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home.as_view(), name='home'),
     path('', include(router.urls)),
+    path('api-token-auth/', views.obtain_auth_token),
     path('noticias/', include('noticia.urls')),
     path('registration/', RegistrationView.as_view(), name='registration'),
     path('accounts/', include('django.contrib.auth.urls')),

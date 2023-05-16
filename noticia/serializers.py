@@ -3,13 +3,13 @@ from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializ
 from .models import Noticia, Autor
 
 class AutorModelSerializer(ModelSerializer):
+    
     class Meta:
         model = Autor
         exclude = ["user"]
 
 
 class NoticiaModelSerializer(ModelSerializer):
-    # autor = AutorModelSerializer()
 
     class Meta:
         model = Noticia

@@ -1,4 +1,8 @@
+from tkinter.font import families
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 from .models import Noticia, Autor
 from .forms import AutorForm, NoticiaForm
 from django.contrib.auth.decorators import login_required
@@ -7,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework.views import APIView
-from .serializers import NoticiaModelSerializer
+from .serializers import NoticiaModelSerializer, AutorModelSerializer
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework import viewsets
@@ -126,27 +130,35 @@ def deletar_noticia(request, id):
     noticia.delete()
     return redirect('/')
 
+def dar_like(request, noticia_id):
+    noticia = get_object_or_404(Noticia, pk=noticia_id)
+    if request.method == 'GET':
+        noticia.likes += 1
+        noticia.save()
+        return redirect(reverse_lazy("detalhar_noticia", args=[noticia.pk]))
+    else:
+        return redirect(reverse_lazy("detalhar_noticia", args=[noticia.pk]))
+
 class RegistrationView(CreateView):
     template_name = "registration/registration.html"
     model = User
     form_class = UserCreationForm
     success_url = "/"
 
-# class Noticias(APIView):
-#     def get(self, request):
-#         noticias = Noticia.objects.all()
-#         serializer = NoticiaModelSerializer(noticias, many=True, context={'request': request})
-
-#         return Response(serializer.data, status=HTTP_200_OK)
-
-# class AutorView(APIView):
-    
-#     def get(self, request, id):
-#         noticia = Noticia.objects.get(pk=id)
-#         serializer = NoticiaModelSerializer(noticia, context={'request': request})
-
-#         return Response(serializer.data, status=HTTP_200_OK)
-
 class NoticiaViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Noticia.objects.all()
     serializer_class = NoticiaModelSerializer
+
+    @action(methods=['get'], detail=True)
+    def likes(self, request, pk=None):
+        noticia = get_object_or_404(Noticia, pk=pk)
+        noticia.likes += 1
+        noticia.save()
+
+        return Response(NoticiaModelSerializer(noticia, many=False).data)
+
+class AutorViewSet(viewsets.ModelViewSet):
+    queryset = Autor.objects.all()
+    serializer_class = AutorModelSerializer
+

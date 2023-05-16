@@ -23,6 +23,7 @@ class Noticia(models.Model):
     titulo = models.CharField("Titulo", max_length=200)
     subtitulo = models.CharField("Subtitulo", max_length=200)
     conteudo = models.TextField("Conteudo")
+    likes = models.SmallIntegerField("Likes", blank=True, null=True, default=0)
     data_pub = models.DateField("Data de publicação")
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, related_name='noticias')
 

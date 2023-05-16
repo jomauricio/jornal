@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from noticia.views import listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor, listar_noticias, detalhar_noticia, criar_noticia, atualizar_noticia, deletar_noticia
+from noticia.views import listar_autores, detalhar_autor, criar_autor, atualizar_autor, deletar_autor, listar_noticias, detalhar_noticia, criar_noticia, atualizar_noticia, deletar_noticia, dar_like
 from noticia.views import  AutoresListView, AutorDetailView, NoticiaCreateView, RegistrationView
 
 urlpatterns = [
@@ -31,4 +31,5 @@ urlpatterns = [
     path('criar_noticia/', NoticiaCreateView.as_view(), name='criar_noticia'),
     path('atualizar_noticia/<int:id>/', atualizar_noticia, name='atualizar_noticia'),
     path('deletar_noticia/<int:id>/', deletar_noticia, name='deletar_noticia'),
+    path('detalhar_noticia/<int:noticia_id>/like', dar_like, name='like_noticia'),
 ]
